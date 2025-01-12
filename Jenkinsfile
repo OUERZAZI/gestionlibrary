@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub') // ID des credentials Docker Hub dans Jenkins
-        IMAGE_NAME_SERVEUR = 'slimzarrouk/gestionlibrary'           // Nom de l'image Docker pour l'application
-        IMAGE_NAME_CLIENT = 'slimzarrouk/gestionlibrary'
+         IMAGE_NAME_CLIENT= 'slimzarrouk/gestionlibrary'           // Nom de l'image Docker pour l'application
+        IMAGE_NAME_SERVEUR = 'slimzarrouk/mysql:'
         GIT_CREDENTIALS = 'github-ssh-key'              // ID des credentials SSH pour GitHub dans Jenkins
     }
 
