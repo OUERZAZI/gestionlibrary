@@ -15,7 +15,7 @@ pipeline {
             steps {
                 git branch: 'main',
                     url: 'git@github.com:OUERZAZI/gestionlibrary.git',
-                    credentialsId: "github"
+                    credentialsId: "github-ssh-key"
             }
         }
 
