@@ -73,6 +73,57 @@ volumes:
 
 ---
 
+
+### Running the Project with Docker
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/gestionlibrary.git
+   cd gestionlibrary
+   ```
+
+2. Build and run the Docker containers:
+   ```bash
+   docker-compose up --build
+   ```
+
+3. Access the application in your browser at:
+   ```
+   http://localhost:8080
+   ```
+
+4. Use MySQL at:
+   ```
+   localhost:3306
+   ```
+
+---
+
+## Screenshots
+
+### Docker Desktop Configuration
+![dockerHub](https://github.com/user-attachments/assets/6975669b-de86-4c1a-b6ff-e4e95d04311e)
+
+### Dockerfile Configuration in IDE
+![dockerFile](https://github.com/user-attachments/assets/e5080ddd-f560-4dea-9054-aa006deadb65)
+
+### Docker-Compose Configuration in IDE
+![docker-compose](https://github.com/user-attachments/assets/dd51354c-64b4-4fe0-8119-03285200709e)
+
+### Web Application Interface
+![capture de inteface ](https://github.com/user-attachments/assets/1be94230-514d-445c-999f-3dd0ff46bba3)
+
+---
+### Docker Hub Images
+Below is the Docker Hub repository used for the project:
+![Capture d'écran 2025-01-14 222050](https://github.com/user-attachments/assets/038ef6b1-5130-4fe8-a4bb-a7e21bba3e94)
+
+---
+### Jenkins Integration**
+   - Automate the build and deployment pipeline using Jenkins.
+   - Below is a sample configuration for Jenkins setup:
+![Capture d'écran 2025-01-14 223328](https://github.com/user-attachments/assets/1d62e50e-472f-40a5-be30-8aa356ce3a00)
+---
 ### Kubernetes Deployment
 
 The project includes Kubernetes configurations to deploy the application and MySQL database. Kubernetes YAML files are stored in the `k8s` directory.
@@ -132,47 +183,6 @@ The project includes Kubernetes configurations to deploy the application and MyS
 
 ---
 
-### Running the Project with Docker
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/gestionlibrary.git
-   cd gestionlibrary
-   ```
-
-2. Build and run the Docker containers:
-   ```bash
-   docker-compose up --build
-   ```
-
-3. Access the application in your browser at:
-   ```
-   http://localhost:8080
-   ```
-
-4. Use MySQL at:
-   ```
-   localhost:3306
-   ```
-
----
-
-## Screenshots
-
-### Docker Desktop Configuration
-![dockerHub](https://github.com/user-attachments/assets/6975669b-de86-4c1a-b6ff-e4e95d04311e)
-
-### Dockerfile Configuration in IDE
-![dockerFile](https://github.com/user-attachments/assets/e5080ddd-f560-4dea-9054-aa006deadb65)
-
-### Docker-Compose Configuration in IDE
-![docker-compose](https://github.com/user-attachments/assets/dd51354c-64b4-4fe0-8119-03285200709e)
-
-### Web Application Interface
-![capture de inteface ](https://github.com/user-attachments/assets/1be94230-514d-445c-999f-3dd0ff46bba3)
-
----
-
 ## Error Handling
 
 ### kubectl get pods Error
@@ -196,20 +206,6 @@ The following error was encountered:
   ```bash
   kubectl describe pod <pod-name>
   ```
-
-### Docker Hub Images
-Below is the Docker Hub repository used for the project:
-![Capture d'écran 2025-01-14 222050](https://github.com/user-attachments/assets/038ef6b1-5130-4fe8-a4bb-a7e21bba3e94)
-
----
-
-## Next Steps
-
-1. **Jenkins Integration**
-   - Automate the build and deployment pipeline using Jenkins.
-   - Below is a sample configuration for Jenkins setup:
-![Capture d'écran 2025-01-14 223328](https://github.com/user-attachments/assets/1d62e50e-472f-40a5-be30-8aa356ce3a00)
-
 
 ---
 
