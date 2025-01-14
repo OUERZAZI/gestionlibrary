@@ -104,22 +104,53 @@ volumes:
 ![dockerHub](https://github.com/user-attachments/assets/6975669b-de86-4c1a-b6ff-e4e95d04311e)
 
 ### Dockerfile Configuration in IDE
-## License![dockerFile](https://github.com/user-attachments/assets/e5080ddd-f560-4dea-9054-aa006deadb65)
-
+![dockerFile](https://github.com/user-attachments/assets/e5080ddd-f560-4dea-9054-aa006deadb65)
 
 ### Docker-Compose Configuration in IDE
 ![docker-compose](https://github.com/user-attachments/assets/dd51354c-64b4-4fe0-8119-03285200709e)
 
-
 ### Web Application Interface
+![capture de inteface ](https://github.com/user-attachments/assets/1be94230-514d-445c-999f-3dd0ff46bba3)
 
-![capture  de inteface ](https://github.com/user-attachments/assets/1be94230-514d-445c-999f-3dd0ff46bba3)
+---
+
+## Error Handling
+
+### kubectl get pods Error
+
+While running the command:
+```bash
+kubectl get pods
+```
+
+The following error was encountered:
+![kubectl_error](https://github.com/user-attachments/assets/da5e17bc-b857-4252-a482-53cb23b68fbb)
+
+#### Solution
+- Ensure the Kubernetes cluster is properly configured.
+- Verify the context and namespace with:
+  ```bash
+  kubectl config get-contexts
+  kubectl config set-context <context-name>
+  ```
+- Check pod statuses with:
+  ```bash
+  kubectl describe pod <pod-name>
+  ```
+
+### Docker Hub Images
+Below is the Docker Hub repository used for the project:
+![dockerHubImages](https://github.com/user-attachments/assets/158cd1bf-665d-4235-be40-861cb06f4786)
 
 ---
 
 ## Next Steps
 
-1. **Jenkins Integration**: Automate the build and deployment pipeline.
+1. **Jenkins Integration**
+   - Automate the build and deployment pipeline using Jenkins.
+   - Below is a sample configuration for Jenkins setup:
+     ![jenkins_setup](https://github.com/user-attachments/assets/979e6544-e17c-498f-8a36-132255d2094b)
+
 2. **Kubernetes Deployment**: Ensure scalability using Kubernetes clusters.
 3. **Enhanced Features**: Add advanced book search and filtering capabilities.
 
@@ -131,8 +162,4 @@ Feel free to fork this repository and submit pull requests. Contributions are we
 
 ---
 
-
-
 This project is licensed under the [MIT License](LICENSE).
-
-
