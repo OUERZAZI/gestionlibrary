@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gestionlibrary-app
+  labels:
+    app: gestionlibrary-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gestionlibrary-app
+  template:
+    metadata:
+      labels:
+        app: gestionlibrary-app
+    spec:
+      containers:
+        - name: gestionlibrary-app
+          image: slimzarrouk/gestionlibrary-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql:3306/gestionlibraries?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gestionlibrary-service
+spec:
+  selector:
+    app: gestionlibrary-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
