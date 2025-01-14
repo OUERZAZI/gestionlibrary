@@ -130,55 +130,97 @@ The project includes Kubernetes configurations to deploy the application and MyS
 
 #### Deployment Files
 
-- **Application Deployment**: Handles the deployment of the Spring Boot application.
+**Application Deployment**: Handles the deployment of the Spring Boot application.
   ```yaml
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: app-deployment
-  spec:
-    replicas: 2
-    selector:
-      matchLabels:
-        app: gestionlibrary
-    template:
-      metadata:
-        labels:
-          app: gestionlibrary
-      spec:
-        containers:
+ apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gestionlibrary-app
+  labels:
+    app: gestionlibrary-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gestionlibrary-app
+  template:
+    metadata:
+      labels:
+        app: gestionlibrary-app
+    spec:
+      containers:
         - name: gestionlibrary-app
-          image: your-dockerhub-repo/gestionlibrary:latest
+          image: slimzarrouk/gestionlibrary-app:latest
           ports:
-          - containerPort: 8080
-  ```
-
-- **MySQL Deployment**: Configures the MySQL database.
-  ```yaml
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: mysql-deployment
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
-        app: mysql
-    template:
-      metadata:
-        labels:
-          app: mysql
-      spec:
-        containers:
-        - name: mysql
-          image: mysql:8.0
+            - containerPort: 8080
           env:
-          - name: MYSQL_ROOT_PASSWORD
-            value: yourpassword
-          - name: MYSQL_DATABASE
-            value: gestionlibraries
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql:3306/gestionlibraries?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+apiVersion: v1
+kind: Service
+metadata:
+  name: gestionlibrary-service
+spec:
+  selector:
+    app: gestionlibrary-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+   ```
+
+---
+
+
+**MySQL Deployment**: Configures the MySQL database.
+  ```yaml
+ apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: slimzarrouk/mysql:latest
           ports:
-          - containerPort: 3306
+            - containerPort: 3306
+          env:
+
+            - name: MYSQL_DATABASE
+              value: "gestionlibraries"
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP
   ```
 
 ---
@@ -195,17 +237,6 @@ kubectl get pods
 The following error was encountered:
 ![kubectl_error](https://github.com/user-attachments/assets/da5e17bc-b857-4252-a482-53cb23b68fbb)
 
-#### Solution
-- Ensure the Kubernetes cluster is properly configured.
-- Verify the context and namespace with:
-  ```bash
-  kubectl config get-contexts
-  kubectl config set-context <context-name>
-  ```
-- Check pod statuses with:
-  ```bash
-  kubectl describe pod <pod-name>
-  ```
 
 ---
 
