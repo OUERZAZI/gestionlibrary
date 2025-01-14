@@ -73,6 +73,65 @@ volumes:
 
 ---
 
+### Kubernetes Deployment
+
+The project includes Kubernetes configurations to deploy the application and MySQL database. Kubernetes YAML files are stored in the `k8s` directory.
+
+#### Deployment Files
+
+- **Application Deployment**: Handles the deployment of the Spring Boot application.
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: app-deployment
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: gestionlibrary
+    template:
+      metadata:
+        labels:
+          app: gestionlibrary
+      spec:
+        containers:
+        - name: gestionlibrary-app
+          image: your-dockerhub-repo/gestionlibrary:latest
+          ports:
+          - containerPort: 8080
+  ```
+
+- **MySQL Deployment**: Configures the MySQL database.
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: mysql-deployment
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql
+    template:
+      metadata:
+        labels:
+          app: mysql
+      spec:
+        containers:
+        - name: mysql
+          image: mysql:8.0
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: yourpassword
+          - name: MYSQL_DATABASE
+            value: gestionlibraries
+          ports:
+          - containerPort: 3306
+  ```
+
+---
+
 ### Running the Project with Docker
 
 1. Clone the repository:
@@ -140,7 +199,7 @@ The following error was encountered:
 
 ### Docker Hub Images
 Below is the Docker Hub repository used for the project:
-![dockerHubImages](https://github.com/user-attachments/assets/158cd1bf-665d-4235-be40-861cb06f4786)
+![Capture d'écran 2025-01-14 222050](https://github.com/user-attachments/assets/038ef6b1-5130-4fe8-a4bb-a7e21bba3e94)
 
 ---
 
@@ -149,10 +208,8 @@ Below is the Docker Hub repository used for the project:
 1. **Jenkins Integration**
    - Automate the build and deployment pipeline using Jenkins.
    - Below is a sample configuration for Jenkins setup:
-     ![jenkins_setup](https://github.com/user-attachments/assets/979e6544-e17c-498f-8a36-132255d2094b)
+![Capture d'écran 2025-01-14 223328](https://github.com/user-attachments/assets/1d62e50e-472f-40a5-be30-8aa356ce3a00)
 
-2. **Kubernetes Deployment**: Ensure scalability using Kubernetes clusters.
-3. **Enhanced Features**: Add advanced book search and filtering capabilities.
 
 ---
 
